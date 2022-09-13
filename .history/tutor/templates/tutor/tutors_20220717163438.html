@@ -1,0 +1,221 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %}
+Tutors |
+{% endblock title %}
+{% block head %}
+<link href="{% static 'assets/vendor/nouislider/nouislider.min.css' %}" rel="stylesheet">
+
+<style>
+    .shadow-1 {
+        box-shadow: 0 1px 10px 0 rgba(83, 83, 83, 0.1);
+    }
+</style>
+{% endblock head %}
+{% block content %}
+<!-- search -->
+<div class="row mb-3">
+    <div class="col-12 overflow-hidden">
+        <!-- input -->
+        <div class="row">
+            <div class="col position-relative align-self-center">
+                <div class="form-group form-floating mb-3 is-valid">
+                    <input type="text" class="form-control" value="" id="email" placeholder="Search">
+                    <label class="form-control-label" for="email">Search</label>
+                </div>
+            </div>
+            <div class="col-auto align-self-center">
+                <button class="btn btn-light btn-44 filter-btn">
+                    <i class="bi bi-filter size-22"></i>
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow-sm mb-4 ">
+            <ul class="list-group list-group-flush bg-none">
+                {% for tutor in tutors %}
+                <a href="{{tutor.get_absolute_url}}">
+                    <li class="list-group-item border-0">
+                        <div class="row">
+                            <div class="col-auto">
+                                <div class="card">
+                                    <div class="card-body p-1">
+                                        <figure class="avatar avatar-44 rounded-15">
+                                            <img src="{{tutor.avtar.url}}" alt="">
+                                        </figure>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <p>{{tutor.name}}
+                                    <br>
+                                    <small class="text-secondary">
+                                        Days Available: <strong>{{tutor.days_avail}}</strong>
+                                        <!-- <i class="bi bi-mortarboard me-1"></i>{{tutor.qualification}} -->
+                                    </small>
+                                    <!-- <small class="text-secondary">{{tutor.days_avail}}</small> -->
+                                </p>
+                            </div>
+                            <div class="col-auto text-end">
+                                <small class="text-secondary">{{tutor.charges}}&nbsp;&#8377;/Hour</small>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row p-0">
+                            <div class="col-auto">
+
+                                <ul>
+                                    {% for lang in tutor.i_speak.all %}
+                                    <li class="text-primary" style="font-weight: 600;">
+                                        <small>
+                                            {{lang.language.name}} <span
+                                                class="bg-light rounded-pill px-2 py-1 shadow-sm">{{lang.get_level_display}}</span>
+                                        </small>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                </a>
+                {% endfor %}
+
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- filter menu -->
+<div class="filter">
+    <form action="" method="get">
+        <div class="card shadow h-100">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col align-self-center">
+                        <h6 class="mb-0">Filter Tutors</h6>
+                        <p class="text-secondary small">{{tutors.count}} Tutors</p>
+                    </div>
+                    <div class="col-auto px-0">
+                        <button class="btn btn-link text-danger filter-close">
+                            <i class="bi bi-x size-22"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body overflow-auto">
+                <div class="mb-4">
+                    <h6>Select Charge Per Hour</h6>
+                    <div id="rangeslider" class="mt-4"></div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col">
+                        <div class="form-floating">
+                            <input type="number" class="form-control" min="0" max="10000" value="100" step="1"
+                                id="input-select">
+                            <label for="input-select">Minimum</label>
+                        </div>
+                    </div>
+                    <div class="col-auto align-self-center"> to </div>
+                    <div class="col">
+                        <div class="form-floating">
+                            <input type="number" class="form-control" min="0" max="10000" value="1000" step="1"
+                                id="input-number">
+                            <label for="input-number">Maximum</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-floating mb-4">
+                    <select class="form-control" id="filtertype">
+                        <option selected="">-----</option>
+                        {% for lang in langs %}
+                        <option value="{{lang.pk}}">{{lang.name}}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="filtertype">Select Language</label>
+                </div>
+
+                <div class="form-group floating-form-group active mb-4">
+                    <h6 class="mb-3">Select Days Available</h6>
+
+                    <div class="form-check form-switch mb-2">
+                        <input type="checkbox" class="form-check-input" id="monday" name="days_avail">
+                        <label class="form-check-label" for="monday">Monday</label>
+                    </div>
+                    <div class="form-check form-switch mb-2">
+                        <input type="checkbox" class="form-check-input" id="tuesday" name="days_avail">
+                        <label class="form-check-label" for="tuesday">Tuesday</label>
+                    </div>
+                    <div class="form-check form-switch mb-2">
+                        <input type="checkbox" class="form-check-input" id="wednesday" name="days_avail">
+                        <label class="form-check-label" for="wednesday">Wednesday</label>
+                    </div>
+                    <div class="form-check form-switch mb-2">
+                        <input type="checkbox" class="form-check-input" id="thursday" name="days_avail">
+                        <label class="form-check-label" for="thursday">Thursday</label>
+                    </div>
+                    <div class="form-check form-switch mb-2">
+                        <input type="checkbox" class="form-check-input" id="friday" name="days_avail">
+                        <label class="form-check-label" for="friday">Friday</label>
+                    </div>
+                    <div class="form-check form-switch mb-2">
+                        <input type="checkbox" class="form-check-input" id="saturday" name="days_avail">
+                        <label class="form-check-label" for="saturday">Saturday</label>
+                    </div>
+                    <div class="form-check form-switch mb-2">
+                        <input type="checkbox" class="form-check-input" id="sunday" name="days_avail">
+                        <label class="form-check-label" for="sunday">Sunday</label>
+                    </div>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" placeholder="Keyword">
+                    <label for="input-select">Keyword</label>
+                </div>
+
+            </div>
+            <div class="card-footer">
+                <button type="submit" class="btn btn-lg btn-success w-100 shadow-sm shadow-success">Search</button>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- filter menu ends-->
+{% endblock content %}
+{% block scripts %}
+<script src="{% static 'assets/vendor/nouislider/nouislider.min.js' %}"></script>
+<script>
+    /* filter sliders range picker for filter */
+    var html5Slider = document.getElementById('rangeslider');
+    noUiSlider.create(html5Slider, {
+        start: [500, 5000],
+        connect: true,
+        range: {
+            'min': 100,
+            'max': 10000
+        }
+    });
+    var inputNumber = document.getElementById('input-number');
+    var select = document.getElementById('input-select');
+
+    html5Slider.noUiSlider.on('update', function (values, handle) {
+        var value = values[handle];
+
+        if (handle) {
+            inputNumber.value = value;
+        } else {
+            select.value = Math.round(value);
+        }
+    });
+    select.addEventListener('change', function () {
+        html5Slider.noUiSlider.set([this.value, null]);
+    });
+    inputNumber.addEventListener('change', function () {
+        html5Slider.noUiSlider.set([null, this.value]);
+    });
+</script>
+{% endblock scripts %}

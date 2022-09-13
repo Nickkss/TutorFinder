@@ -1,0 +1,63 @@
+{% extends 'base/base.html' %}
+{% block title %}
+Tutors |
+{% endblock title %}
+{% block head %}
+<style>
+    .shadow-1 {
+        box-shadow: 0 1px 10px 0 rgba(83, 83, 83, 0.1);
+    }
+</style>
+{% endblock head %}
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow-sm mb-4 ">
+            <ul class="list-group list-group-flush bg-none">
+                {% for tutor in tutors %}
+                <li class="list-group-item border-0">
+                    <div class="row">
+                        <div class="col-auto">
+                            <div class="card">
+                                <div class="card-body p-1">
+                                    <figure class="avatar avatar-44 rounded-15">
+                                        <img src="{{tutor.avtar.url}}" alt="">
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <p>{{tutor.name}}
+                                <br>
+                                <small class="text-secondary">{{tutor.days_avail}}</small>
+                            </p>
+                        </div>
+                        <div class="col-auto text-end">
+                            <p>
+                                <small class="text-secondary">{{tutor.charges}}&nbsp;&#8377;/Hour</small>
+                            </p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row p-1">
+                        <div class="col">
+                            <p>
+                                <i class="bi bi-mortarboard me-2"></i>{{tutor.qualification}}
+                            </p>
+                            <p>
+                                <ul>
+                                    {% for lang in i_speak %}
+                                    <li>{{lang}}</li>
+                                    {% endfor %}
+                                </ul>
+                            </p>
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock content %}

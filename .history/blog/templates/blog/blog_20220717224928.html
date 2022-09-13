@@ -1,0 +1,36 @@
+﻿{% extends 'base/base.html' %}
+{% block title %}
+{{blog.title}} |
+{% endblock title %}
+{% block content %}
+<!-- Blog Details banner -->
+<div class="row">
+    <div class="col-12 px-0">
+        <div class="card mb-4 overflow-hidden shadow-sm card-theme text-white rounded-0">
+            <div class="overlay"></div>
+            <div class="coverimg h-100 w-100 position-absolute opacity-3">
+                <img src="{{blog.image.url}}" alt="">
+            </div>
+            <div class="card-body">
+                <a href="{{blog.get_absolute_url}}" class="h4 mb-1 text-normal d-block text-white">{{blog.title}}</a>
+                <p class="mb-3">Published on: {{blog.created_on.date}}</p>
+                {% if blog.author %}
+                <div class="d-flex">
+                    <figure class="avatar avatar-40 rounded-15">
+                        <img src="{{blog.author.avtar.url}}" alt="">
+                    </figure>
+                    <p class="mx-2 lh-small align-self-center">{{blog.author.name}}<br><span class="small">Author</span>
+                    </p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Blogs Content  -->
+<div class="row">
+    <div class="col-12 col-md-10 col-lg-8 mx-auto">
+        {{blog.content|safe}}
+    </div>
+</div>
+{% endblock content %}

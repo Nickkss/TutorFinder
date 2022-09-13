@@ -1,0 +1,49 @@
+{% load static %}
+{% load frontend_filters %}
+<footer class="footer">
+    <div class="container">
+        <ul class="nav nav-pills nav-justified">
+            <li class="nav-item">
+                <a class="nav-link {% if request.path|check_path:'frontend:Home' %}active{% endif %}"
+                    href="{% url 'frontend:Home' %}">
+                    <span>
+                        <i class="nav-icon bi bi-house"></i>
+                        <span class="nav-text">Home</span>
+                    </span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="stats.html" onclick="javascript: workHard(event);">
+                    <span>
+                        <i class="nav-icon bi bi-people"></i>
+                        <span class="nav-text">Tutors</span>
+                    </span>
+                </a>
+            </li>
+            <li class="nav-item centerbutton">
+                <button type="button" class="nav-link" data-bs-toggle="modal" data-bs-target="#menumodal"
+                    id="centermenubtn">
+                    <span class="theme-radial-gradient">
+                        <i class="bi bi-grid size-22"></i>
+                    </span>
+                </button>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="shop.html" onclick="javascript: workHard(event);">
+                    <span>
+                        <i class="nav-icon bi bi-person-circle"></i>
+                        <span class="nav-text">Profile</span>
+                    </span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{request.user.get_logout_url}}">
+                    <span>
+                        <i class="nav-icon bi bi-box-arrow-right"></i>
+                        <span class="nav-text">Logout</span>
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</footer>

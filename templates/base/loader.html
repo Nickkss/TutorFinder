@@ -1,0 +1,17 @@
+{% load static %}
+<style>
+    .logo-box img {
+        max-width: 200px;
+    }
+</style>
+<div class="container-fluid loader-wrap">
+    <div class="row h-100">
+        <div class="col-10 col-md-6 col-lg-5 col-xl-3 mx-auto text-center align-self-center">
+            <div class="logo-box d-flex justify-content-center align-items-center">
+                <img src="{% static 'images/logo_small.png' %}" alt="" srcset="">
+            </div>
+            <p class="mt-4"><span class="text-secondary">{{settings.title}} is Loading</span><br><strong>Please
+                    wait...</strong></p>
+        </div>
+    </div>
+</div>

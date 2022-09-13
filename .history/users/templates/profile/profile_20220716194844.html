@@ -1,0 +1,150 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %}
+My Profile |
+{% endblock title %}
+{% block content %}
+<div class="row">
+    <div class="col-12 profile-page">
+        <div class="clearfix"></div>
+        <div class="circle small one"></div>
+        <div class="circle small two"></div>
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="282.062"
+            height="209.359" viewbox="0 0 282.062 209.359" class="menubg">
+            <defs>
+                <lineargradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientunits="objectBoundingBox">
+                    <stop offset="0" stop-color="#09b2fd"></stop>
+                    <stop offset="1" stop-color="#6b00e5"></stop>
+                </lineargradient>
+            </defs>
+            <path id="profilebg"
+                d="M751.177,233.459c-28.511,1.567-38.838,7.246-61.77,27.573s-27.623,71.926-65.15,70.883-27.624-21.369-79.744-40.132-47.13-53.005-23.676-84.8,4.009-57.671,33-75.867,83.269,30.223,127.232,21.5,64.157-41.353,82.329-26,5.953,29.138,8.773,46.369,13.786,23.5,13.786,37.91S779.688,231.893,751.177,233.459Z"
+                transform="translate(-503.892 -122.573)" fill="url(#linear-gradient)"></path>
+        </svg>
+
+
+        <div class="row my-3 py-4">
+            <div class="col-7 align-self-center">
+                <h1 class="mb-2"><span class="fw-light text-secondary">Hello!</span><br>{{request.user.name}}</h1>
+                <p class="text-muted size-12">{{request.user.address}},<br>{{request.user.country}}</p>
+            </div>
+
+            <div class="col align-self-center">
+                <figure class="avatar avatar-100 rounded-20 p-1 bg-white shadow-sm">
+                    <img src="{{request.user.avtar.url}}" alt="" class="rounded-18">
+                </figure>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- People -->
+<div class="row mb-2">
+    <div class="col">
+        <h6 class="title">People</h6>
+    </div>
+    <div class="col-auto">
+        <a href="userlist.html" class="small">View More</a>
+    </div>
+</div>
+<div class="row mb-3">
+    <div class="col-12 px-0">
+        <!-- swiper users connections -->
+        <div class="swiper-container connectionwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <a href="profile.html" class="card text-center">
+                        <div class="card-body p-1">
+                            <div class="position-absolute end-0 top-0 bg-success z-index-1 online-status">
+                            </div>
+                            <figure class="avatar avatar-80 shadow-sm rounded-18">
+                                <img src="{% static 'assets/img/user4.jpg' %}" alt="">
+                            </figure>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="swiper-slide">
+                    <a href="profile.html" class="card text-center">
+                        <div class="card-body p-1">
+                            <div class="position-absolute end-0 top-0 bg-danger z-index-1 online-status">
+                            </div>
+                            <figure class="avatar avatar-80 shadow-sm rounded-20">
+                                <img src="{% static 'assets/img/user2.jpg' %}" alt="">
+                            </figure>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="swiper-slide">
+                    <a href="profile.html" class="card text-center">
+                        <div class="card-body p-1">
+                            <div class="position-absolute end-0 top-0 bg-warning z-index-1 online-status">
+                            </div>
+                            <figure class="avatar avatar-80 shadow-sm rounded-20">
+                                <img src="{% static 'assets/img/user3.jpg' %}" alt="">
+                            </figure>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="swiper-slide">
+                    <a href="profile.html" class="card text-center">
+                        <div class="card-body p-1">
+                            <div class="position-absolute end-0 top-0 bg-success z-index-1 online-status">
+                            </div>
+                            <figure class="avatar avatar-80 shadow-sm rounded-20">
+                                <img src="{% static 'assets/img/user1.jpg' %}" alt="">
+                            </figure>
+                        </div>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="profile.html" class="card text-center">
+                        <div class="card-body p-1">
+                            <div class="position-absolute end-0 top-0 bg-success z-index-1 online-status">
+                            </div>
+                            <figure class="avatar avatar-80 shadow-sm rounded-20">
+                                <img src="{% static 'assets/img/user4.jpg' %}" alt="">
+                            </figure>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="swiper-slide">
+                    <a href="profile.html" class="card text-center">
+                        <div class="card-body p-1">
+                            <figure class="avatar avatar-80 shadow-sm rounded-20">
+                                <img src="{% static 'assets/img/user2.jpg' %}" alt="">
+                            </figure>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="swiper-slide">
+                    <a href="profile.html" class="card text-center">
+                        <div class="card-body p-1">
+                            <div class="position-absolute end-0 top-0 bg-success z-index-1 online-status">
+                            </div>
+                            <figure class="avatar avatar-80 shadow-sm rounded-20">
+                                <img src="{% static 'assets/img/user3.jpg' %}" alt="">
+                            </figure>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="swiper-slide">
+                    <a href="profile.html" class="card text-center">
+                        <div class="card-body p-1">
+                            <figure class="avatar avatar-80 shadow-sm rounded-20">
+                                <img src="{% static 'assets/img/user1.jpg' %}" alt="">
+                            </figure>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

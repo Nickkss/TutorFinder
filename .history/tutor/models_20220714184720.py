@@ -1,0 +1,39 @@
+from django.db import models
+from phonenumber_field.modelfields import PhoneNumberField
+from django.utils import timezone
+from django.utils.translation import ugettext_lazy as _
+from django.db.models.query_utils import Q
+from django.urls import reverse
+from multiselectfield import MultiSelectField
+
+from frontend.models import BaseModel
+
+import random
+import string
+import os
+
+# Create your models here.
+DAY_CHOICES = [
+    (1, "Mon"),
+    (2, "Tue"),
+    (3, "Wed"),
+    (4, "Thu"),
+    (5, "Fri"),
+    (6, "Sat"),
+    (7, "Sun"),
+]
+  
+
+class Tutor(BaseModel):
+    intro_video = models.FileField(_("Upload Intro Video"), upload_to="tutor_intro_videos/", blank=True, null=True)
+    charges = models.PositiveIntegerField(_("Charges per hour"), default=100, help_text=_("Charges in INR"), blank=True)
+    about_me = models.TextField(_("About Me"), blank=True, null=True)
+    #i_speak = models.TextField(_("I Speak"), blank=True, null=True, help_text=_("Example: Hindi, Korean (Beginner, Intermediate, Fluent, Native)"))
+    days_avail = MultiSelectField(choices=DAY_CHOICES, verbose_name=_("Days Available"), blank=False, null=True)
+    qualification = models.TextField(_("Qualification"), blank=True, null=True)
+    
+    def __str__(self):
+        return str(self.user.username)
+
+    class Meta:
+        ordering = ['-created_on']

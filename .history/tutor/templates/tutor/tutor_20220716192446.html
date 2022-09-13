@@ -1,0 +1,101 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %}
+Tutor - {{tutor.name}} |
+{% endblock title %}
+{% block content %}
+<!-- product banner -->
+<div class="row">
+    <div class="col-12 px-0 position-relative">
+        <div class="card shadow-sm mb-3">
+            <div class="card-body">
+                <img src="{{tutor.avtar.url}}" alt="{{tutor.name}}'s Image" class="w-100 rounded-15">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mb-3">
+    <div class="col-md-12 mb-2">
+        <p class="fs-4 fw-bold ms-2">Intro Video</p>
+    </div>
+    <div class="col-md-auto">
+        <div class="embed-responsive embed-responsive-1by1">
+            <video class="embed-responsive-item rounded-15 shadow-sm" muted="" autoplay="" loop="" controls
+                src="{{tutor.intro_video.url}}" type="video/mp4" style="width:100%;height:auto;">
+            </video>
+        </div>
+    </div>
+</div>
+<!-- name and description -->
+<div class="row mb-2">
+    <div class="col">
+        <small class="text-secondary"><i class="bi bi-mortarboard me-1"></i>{{tutor.qualification}}</small>
+    </div>
+    <div class="col-auto">
+        <p class="small">
+            <small class="text-secondary">{{tutor.charges}}&nbsp;&#8377;/Hour</small>
+        </p>
+    </div>
+</div>
+<h4 class="mb-2 text-capitalize">{{tutor.name}}</h4>
+
+<!-- delivery time -->
+<div class="row">
+    <div class="col-12">
+        <div class="card bg-opac-50 shadow-sm mb-4">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-auto">
+                        <div class="card">
+                            <div class="card-body p-1">
+                                <figure class="text-center mb-0 avatar avatar-50 bg-theme rounded-15">
+                                    <i class="bi bi-clock size-24 "></i>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col align-self-center ps-0">
+                        <strong>
+                            {{tutor.days_avail}}
+                        </strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-3">
+    <div class="col-md-12 mb-3">
+        <p class="h3">Language Known</p>
+    </div>
+    <div class="col-md-12">
+        <ul>
+            {% for lang in tutor.i_speak.all %}
+            <li class="text-primary" style="font-weight: 600;">
+                <small>
+                    {{lang.language.name}} <span
+                        class="bg-light rounded-pill px-2 py-1 shadow-sm">{{lang.get_level_display}}</span>
+                </small>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<div class="row mb-5">
+    <div class="col-md-auto">
+        <h5 class="mb-3">About Me</h5>
+        {{tutor.about_me|safe}}
+    </div>
+</div>
+{% endblock content %}
+{% block scripts %}
+<script>
+    var swiper2 = new Swiper(".cardswiper", {
+        slidesPerView: "auto",
+        spaceBetween: 0,
+        pagination: false
+    });
+</script>
+{% endblock scripts %}

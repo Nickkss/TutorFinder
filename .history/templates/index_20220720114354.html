@@ -1,0 +1,254 @@
+﻿{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+<!-- balance -->
+<div class="row my-4 text-center">
+    <div class="col-12">
+        <p class="text-secondary fs-3 fw-light text-uppercase">Choose a tutor that suits you best</p>
+    </div>
+</div>
+
+<!-- People -->
+<div class="row mb-2">
+    <div class="col">
+        <h6 class="title">Tutors</h6>
+    </div>
+    <div class="col-auto">
+        <a href="{% url 'tutor:Tutors' %}" class="small">View More</a>
+    </div>
+</div>
+<div class="row mb-3">
+    <div class="col-12 px-0">
+        <!-- swiper users connections -->
+        <div class="swiper-container connectionwiper">
+            <div class="swiper-wrapper">
+                {% for tutor in tutors %}
+                <div class="swiper-slide">
+                    <a href="{{tutor.get_absolute_url}}" class="card text-center">
+                        <div class="card-body p-1">
+
+                            <figure class="avatar avatar-80 shadow-sm rounded-18">
+                                <img src="{{tutor.avtar.url}}" alt="">
+                            </figure>
+                        </div>
+                        <small class="p-1 fw-bold">{{tutor.name}}</small>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Dark mode switch -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="darkmodeswitch">
+                    <label class="form-check-label text-muted px-2 " for="darkmodeswitch">Activate Dark
+                        Mode</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- offers banner -->
+<!-- <div class="row mb-4">
+    <div class="col-12">
+        <div class="card theme-bg overflow-hidden">
+            <figure class="m-0 p-0 position-absolute top-0 start-0 w-100 h-100 coverimg right-center-img">
+                <img src="{% static 'assets/img/offerbg.png' %}" alt="">
+            </figure>
+            <div class="card-body py-4">
+                <div class="row">
+                    <div class="col-9 align-self-center">
+                        <h1 class="mb-3"><span class="fw-light">15% OFF</span><br>GiftCard</h1>
+                        <p>Thank you for spending with us, You have received Gift Card.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<!-- Transactions -->
+<div class="row mb-3">
+    <div class="col">
+        <h6 class="title">Tutor List<br><small class="fw-normal text-muted">Today, {% now 'd F Y' %}</small>
+        </h6>
+    </div>
+    <div class="col-auto align-self-center">
+        <a href="{% url 'tutor:Tutors' %}" class="small">View all</a>
+    </div>
+</div>
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body p-0">
+                <ul class="list-group list-group-flush bg-none">
+                    {% for tutor in tutors %}
+                    <a href="{{tutor.get_absolute_url}}">
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-auto">
+                                    <div class="avatar avatar-60 shadow-sm card rounded-15 p-1">
+                                        <img src="{{tutor.avtar.url}}" alt="" class="rounded-15">
+                                    </div>
+                                </div>
+                                <div class="col align-self-center ps-2">
+                                    <p class="text-secondary size-10 mb-0">{{tutor.name}}</p>
+                                    <p class="">{{tutor.email}}</p>
+                                </div>
+                                <div class="col align-self-center text-end">
+                                    {% if tutor.days_avail.all %}
+                                    <p class="text-secondary text-muted size-10 mb-0">
+                                        {% for day_avail in tutor.days_avail.all %}
+                                        {{day_avail}}
+                                        {% endfor %}
+                                    </p>
+                                    {% endif %}
+                                    <p>{{tutor.charges}}&nbsp;&#8377;/hour</p>
+                                </div>
+                            </div>
+                        </li>
+                    </a>
+                    {% endfor %}
+                    <!-- <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-auto">
+                                <div class="avatar avatar-60 shadow-sm card rounded-15 p-1">
+                                    <img src="{% static 'assets/img/company5.png' %}" alt="" class="rounded-15">
+                                </div>
+                            </div>
+                            <div class="col align-self-center ps-0">
+                                <p class="text-secondary size-10 mb-0">Travel</p>
+                                <p>Uber</p>
+                            </div>
+                            <div class="col align-self-center text-end">
+                                <p class="text-secondary text-muted size-10 mb-0">15-10-2021 | 10:20am</p>
+                                <p>-26.00</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-auto">
+                                <div class="avatar avatar-60 shadow-sm card rounded-15 p-1">
+                                    <img src="{% static 'assets/img/company2.png' %}" alt="" class="rounded-15">
+                                </div>
+                            </div>
+                            <div class="col align-self-center ps-0">
+                                <p class="text-secondary size-10 mb-0">Food</p>
+                                <p>Starbucks</p>
+                            </div>
+                            <div class="col align-self-center text-end">
+                                <p class="text-secondary text-muted size-10 mb-0">15-10-2021 | 10:20am</p>
+                                <p>-18.00</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-auto">
+                                <div class="avatar avatar-60 shadow-sm card rounded-15 p-1">
+                                    <img src="{% static 'assets/img/company3.jpg' %}" alt="" class="rounded-15">
+                                </div>
+                            </div>
+                            <div class="col align-self-center ps-0">
+                                <p class="text-secondary size-10 mb-0">Clothing</p>
+                                <p>Walmart</p>
+                            </div>
+                            <div class="col align-self-center text-end">
+                                <p class="text-secondary text-muted size-10 mb-0">15-10-2021 | 10:20am</p>
+                                <p>-105.00</p>
+                            </div>
+                        </div>
+                    </li> -->
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Blogs -->
+<div class="row mb-3">
+    <div class="col">
+        <h6 class="title">Blogs</h6>
+    </div>
+    <div class="col-auto align-self-center">
+        <a href="{% url 'blog:Blogs' %}" class="small">Read more</a>
+    </div>
+</div>
+<div class="row">
+    {% for blog in blogs %}
+    <div class="col-12 col-md-6 col-lg-4">
+        <a href="{{blog.get_absolute_url}}" class="card mb-3">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-auto">
+                        <div class="avatar avatar-60 shadow-sm rounded-10 coverimg">
+                            <img src="{{blog.image.url}}" alt="">
+                        </div>
+                    </div>
+                    <div class="col align-self-center ps-0">
+                        <p class="mb-1 text-capitalize">{{blog.title}}</p>
+                        <p class="text-muted size-12">
+                            {{blog.content|striptags|safe|truncatewords:15}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+    <!-- <div class="col-12 col-md-6 col-lg-4">
+        <a href="blogdetails.html" class="card mb-3" onclick="javascript: workHard(event);">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-auto">
+                        <div class="avatar avatar-60 shadow-sm rounded-10 coverimg">
+                            <img src="{% static 'assets/img/news1.jpg' %}" alt="">
+                        </div>
+                    </div>
+                    <div class="col align-self-center ps-0">
+                        <p class="mb-1">Walmart news latest picks</p>
+                        <p class="text-muted size-12">Get $10 instant as reward while your friend or invited
+                            member join finwallapp</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4">
+        <a href="blogdetails.html" class="card mb-3" onclick="javascript: workHard(event);">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-auto">
+                        <div class="avatar avatar-60 shadow-sm rounded-10 coverimg">
+                            <img src="{% static 'assets/img/news2.jpg' %}" alt="">
+                        </div>
+                    </div>
+                    <div class="col align-self-center ps-0">
+                        <p class="mb-1">Do share and Help us</p>
+                        <p class="text-muted size-12">Get $10 instant as reward while your friend or invited
+                            member join finwallapp</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div> -->
+</div>
+{% endblock content %}
+{% block scripts %}
+<script>
+    /* swiper carousel connectionwiper */
+    var swiper2 = new Swiper(".connectionwiper", {
+        slidesPerView: "auto",
+        spaceBetween: 0,
+        pagination: false
+    });
+</script>
+{% endblock scripts %}

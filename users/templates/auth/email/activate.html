@@ -1,0 +1,12 @@
+{% autoescape off %}
+
+
+Hi {{user.name}}
+
+Please use the link below to verify your account.
+
+
+{{scheme}}://{{domain}}{% url 'users:Activate' uidb64=uid token=token %}
+
+
+{% endautoescape %}

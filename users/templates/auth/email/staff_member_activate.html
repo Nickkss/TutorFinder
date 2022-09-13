@@ -1,0 +1,16 @@
+{% autoescape off %}
+
+Hi {{user.name}}
+
+Your registration for Staff Member is successfull.
+
+Please use the link below to verify your account.
+
+{{scheme}}://{{domain}}{% url 'users:Activate' uidb64=uid token=token %}
+
+Use these credentials for login:
+Emali : {{user.email}}
+Password : {{password}}
+Login Url : {{scheme}}://{{domain}}{{login_url}}
+
+{% endautoescape %}

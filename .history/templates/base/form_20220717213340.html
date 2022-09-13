@@ -1,0 +1,28 @@
+{% load crispy_forms_tags %}
+{% for field in form %}
+<div class="form-floating mb-3">
+    <input type="text" class="form-control" name="name" placeholder="Name" id="name">
+    <label for="name">Name</label>
+</div>
+<div class="form-floating mb-3">
+    {{ field.errors }}
+    {{ field|as_crispy_field }}
+    <label for="{{field.id_for_label}}">{{ field.label }}</label>
+    {% if field.help_text %}
+    <p class="help">{{ field.help_text|safe }}</p>
+    {% endif %}
+</div>
+{% endfor %}
+
+<script>
+    function showHidePassword(target) {
+        let pwd = document.getElementById(target.getAttribute('data-pwd'));
+        if (pwd.type == "password") {
+            pwd.type = "text"
+            target.innerHTML = '<i class="bx bx-hide me-0"></i>'
+        } else {
+            pwd.type = "password"
+            target.innerHTML = '<i class="bx bx-show me-0"></i>'
+        }
+    }
+</script>

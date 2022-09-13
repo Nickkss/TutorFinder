@@ -1,0 +1,100 @@
+﻿<!doctype html>
+<html lang="en" class="h-100">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="This app is developed by Hemant B., Contact Email: hemantbhardwaj676@gmail.com">
+    <meta name="author" content="Hemant B.">
+    <meta name="generator" content="">
+    <title>
+        {{settings.title}}
+    </title>
+
+    <!-- manifest meta -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="manifest" href="{% static 'manifest.json' %}">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="{% static 'assets/img/favicon180.png' %}?{% now 'U' %}" sizes="180x180">
+    <link rel="icon" href="{% static 'assets/img/favicon32.png' %}?{% now 'U' %}" sizes="32x32" type="image/png">
+    <link rel="icon" href="{% static 'assets/img/favicon16.png' %}?{% now 'U' %}" sizes="16x16" type="image/png">
+
+    <!-- Google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="{% static 'fonts.css' %}" rel="stylesheet">
+
+    <!-- bootstrap icons -->
+    <link rel="stylesheet" href="{% static 'npm/bootstrap-icons%401.5.0/font/bootstrap-icons.css' %}">
+
+    <!-- swiper carousel css -->
+    <link rel="stylesheet" href="{% static 'assets/vendor/swiperjs-6.6.2/swiper-bundle.min.css' %}">
+
+    <!-- style css for this template -->
+    <link href="{% static 'assets/css/style.css' %}?{% now 'U' %}" rel="stylesheet" id="style">
+</head>
+
+<body class="body-scroll d-flex flex-column h-100 " data-page="splash">
+
+    <!-- loader section -->
+    {% include 'base/loader.html' %}
+    <!-- loader section ends -->
+
+    <!-- Begin page content -->
+    <main class="container-fluid h-100 bg-1">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="bg-1-splash"
+            viewbox="0 0 160.46 151.813">
+            <defs>
+                <radialgradient id="radial-gradient" cx="0.668" cy="0.733" r="1.157"
+                    gradienttransform="matrix(-0.118, -0.993, 0.597, -0.071, 0.31, 1.448)"
+                    gradientunits="objectBoundingBox">
+                    <stop offset="0" stop-color="#09b2fd"></stop>
+                    <stop offset="1" stop-color="#6b00e5"></stop>
+                </radialgradient>
+            </defs>
+            <path id="splash1"
+                d="M18.256,0h91.058a18.256,18.256,0,0,1,18.256,18.256l.006,25.107L92,98.166.021,38.43,0,18.256A18.256,18.256,0,0,1,18.256,0Z"
+                transform="matrix(-0.839, 0.545, -0.545, -0.839, 160.46, 82.329)" fill="url(#radial-gradient)"></path>
+        </svg>
+        <img src="{% static 'assets/img/splash2.png' %}" alt="" class="bg-2-splash">
+
+        <div class="row h-100">
+            <div class="col-10 col-md-6 col-lg-4 text-left align-self-center mx-auto">
+                <a href="landing.html" class="logo-splash">
+                    <div class="logo-wallet">
+                        <div class="wallet-bottom">
+                        </div>
+                        <div class="wallet-cards"></div>
+                        <div class="wallet-top">
+                        </div>
+                    </div>
+                    <h1 class="mt-4 mb-2">
+                        <span class="text-secondary fw-light">{{settings.title}}</span>
+                    </h1>
+                    <p class="text-secondary">Best way to find tutor.</p>
+                </a>
+            </div>
+        </div>
+    </main>
+
+
+
+
+    <!-- Required jquery and libraries -->
+    <script src="{% static 'assets/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'assets/js/popper.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/bootstrap-5/js/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- Customized jquery file  -->
+    <script src="{% static 'assets/js/main.js' %}"></script>
+    <script src="{% static 'assets/js/color-scheme.js' %}"></script>
+
+    <!-- Progress circle js script -->
+    <script src="{% static 'assets/vendor/progressbar-js/progressbar.min.js' %}"></script>
+
+    <!-- swiper js script -->
+    <script src="{% static 'assets/vendor/swiperjs-6.6.2/swiper-bundle.min.js' %}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,194 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="This app is developed by Hemant B., Contact Email: hemantbhardwaj676@gmail.com">
+    <meta name="author" content="Hemant B.">
+    <meta name="generator" content="">
+    <title>
+        {% block title %}{% endblock title %}{{settings.title}}
+    </title>
+
+    <!-- manifest meta -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="manifest" href="{% static 'manifest.json' %}">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="{% static 'assets/img/favicon180.png' %}?{% now 'U' %}" sizes="180x180">
+    <link rel="icon" href="{% static 'assets/img/favicon32.png' %}?{% now 'U' %}" sizes="32x32" type="image/png">
+    <link rel="icon" href="{% static 'assets/img/favicon16.png' %}?{% now 'U' %}" sizes="16x16" type="image/png">
+
+    <!-- Google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="{% static 'fonts.css' %}" rel="stylesheet">
+
+    <!-- bootstrap icons -->
+    <link rel="stylesheet" href="{% static 'npm/bootstrap-icons%401.5.0/font/bootstrap-icons.css' %}">
+
+    <!-- swiper carousel css -->
+    <link rel="stylesheet" href="{% static 'assets/vendor/swiperjs-6.6.2/swiper-bundle.min.css' %}">
+
+    <!-- style css for this template -->
+    <link href="{% static 'assets/css/style.css' %}?{% now 'U' %}" rel="stylesheet" id="style">
+    {% block head %}
+
+    {% endblock head %}
+</head>
+
+<body class="body-scroll" data-page="index">
+
+    <!-- loader section -->
+    {% include 'base/loader.html' %}
+    <!-- loader section ends -->
+
+    <!-- Sidebar main menu -->
+    {% include 'base/sidebar.html' %}
+    <!-- Sidebar main menu ends -->
+
+    <!-- Begin page -->
+    <main class="h-100">
+
+        <!-- Header -->
+        {% include 'base/header.html' %}
+        <!-- Header ends -->
+
+        <!-- Server Messages -->
+        {% if messages %}
+        <style>
+            #server-message {
+                display: block;
+                position: fixed;
+                left: 50%;
+                transform: translate(-50%, 0);
+                width: 100%;
+                z-index: 99999;
+            }
+
+            #server-message .message {
+                display: block;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+                font-weight: 500;
+                text-shadow: 1px 1px 4px rgba(0, 0, 0, 1);
+                border: 1px solid rgb(255, 255, 255);
+                color: #fff !important;
+                height: auto;
+            }
+        </style>
+        <div class="container pt-4" id="server-message">
+            <div class="row">
+                <div class="col-md-12 p-0">
+                    {% for message in messages %}
+                    <div class="fs-5 bg-{{message.tags}} rounded-pill p-2 message px-5 mb-0">
+                        {{message|safe}}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        <!-- Server Messages ends -->
+
+        <!-- main page content -->
+        <div class="main-container container">
+            {% block content %}
+
+            {% endblock content %}
+        </div>
+        <!-- main page content ends -->
+
+
+    </main>
+    <!-- Page ends-->
+
+    <!-- Footer -->
+    {% include 'base/footer.html' %}
+    <!-- Menu Modal -->
+    <div class="modal fade" id="menumodal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content shadow">
+                <div class="modal-body">
+                    <h1 class="mb-4 text-center"><span class="text-secondary fw-light">Quick</span><br>Actions!</h1>
+
+                    <div class="row justify-content-center mb-4">
+                        <div class="col-auto text-center">
+                            <a href="bills.html" onclick="javascript: workHard(event);"
+                                class="avatar avatar-70 p-1 shadow-sm shadow-danger rounded-20 bg-opac mb-2"
+                                data-bs-dismiss="modal">
+                                <div class="icons text-danger">
+                                    <i class="bi bi-receipt-cutoff size-24"></i>
+                                </div>
+                            </a>
+                            <p class="size-10 text-secondary">Profile</p>
+                        </div>
+
+                        <div class="col-auto text-center">
+                            <a href="{{request.user.get_logout_url}}"
+                                class="avatar avatar-70 p-1 shadow-sm shadow-purple rounded-20 bg-opac mb-2"
+                                data-bs-dismiss="modal">
+                                <div class="icons text-purple">
+                                    <i class="bi bi-box-arrow-right size-24"></i>
+                                </div>
+                            </a>
+                            <p class="size-10 text-secondary">Logout</p>
+                        </div>
+
+                        <div class="col-auto text-center">
+                            <a href="receivemoney.html" onclick="javascript: workHard(event);"
+                                class="avatar avatar-70 p-1 shadow-sm shadow-success rounded-20 bg-opac mb-2"
+                                data-bs-dismiss="modal">
+                                <div class="icons text-success">
+                                    <i class="bi bi-lock-fill size-24"></i>
+                                </div>
+                            </a>
+                            <p class="size-10 text-secondary">Change Password</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- Footer ends-->
+
+    <!-- Required jquery and libraries -->
+    <script src="{% static 'assets/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'assets/js/popper.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/bootstrap-5/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.20/dist/sweetalert2.all.min.js"></script>
+    <!-- Customized jquery file  -->
+    <script src="{% static 'assets/js/main.js' %}"></script>
+    <script src="{% static 'assets/js/color-scheme.js' %}"></script>
+
+    <!-- Progress circle js script -->
+    <script src="{% static 'assets/vendor/progressbar-js/progressbar.min.js' %}"></script>
+
+    <!-- swiper js script -->
+    <script src="{% static 'assets/vendor/swiperjs-6.6.2/swiper-bundle.min.js' %}"></script>
+    <script>
+        $(document).ready(function () {
+            setTimeout(function () {
+                var message = document.getElementById('server-message');
+                if (message) {
+                    message.remove();
+                }
+            }, 5000);
+        });
+    </script>
+
+    <script>
+        function workHard(event) {
+            event.preventDefault();
+            Swal.fire('We are working hard to get this for you!')
+        }
+    </script>
+    {% block scripts %}
+
+    {% endblock scripts %}
+
+</body>
+
+</html>
